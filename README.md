@@ -24,3 +24,12 @@ This script has managed to catch a shiny pidgey and after 9 hours, defeat the fi
 
 ### Behaviour
 This script enjoys opening and closing the bag, and running away from nearly fainted opponents.
+
+## Spelunky_AI
+Script to play Spelunky.
+
+### Achievements
+This scripts has managed to beat the first level multiple times and get to the door of the second.
+
+### Behaviour
+This script enjoys throwing bombs and ropes, wiggling, and making actually impressive moves.
