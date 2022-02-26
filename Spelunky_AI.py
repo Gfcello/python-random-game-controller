@@ -1,9 +1,7 @@
-
-#Code to play games, text ppl, etc.
-
 import keyboard
 import random
 import time
+import sys
 
 def release_all():
     keyboard.release('i')
@@ -16,19 +14,15 @@ def release_all():
     keyboard.release('a')
     keyboard.release('space')
 
-exit = False
-print('5')
-time.sleep(1)
-print('4')
-time.sleep(1)
-print('3')
-time.sleep(1)
-print('2')
-time.sleep(1)
-print('1')
-time.sleep(1)
-while (exit == False):
-    
+print('Press Space to begin')
+keyboard.wait("space")
+
+while (True):
+    if keyboard.is_pressed('Esc'):
+            print("Exiting...")
+            release_all()
+            sys.exit(0)
+
     # First key press
     randInt = random.randint(0, 100)
     if(randInt < 10):
@@ -74,7 +68,3 @@ while (exit == False):
     time.sleep(0.1)
 
     release_all()
-
-    exit = keyboard.is_pressed('esc')
-
-release_all()
