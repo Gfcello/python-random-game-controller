@@ -3,41 +3,41 @@ import random
 import time
 import sys
 
-print('Press Space to begin')
-keyboard.wait("space")
+used_keys = [
+    'w', 'a', 's', 'd', 'x', 'z', 'enter'
+]
 
-while (True):
-    if keyboard.is_pressed('Esc'):
-            print("Exiting...")
-            sys.exit(0)
+def release_all():
+    for key in used_keys:
+        keyboard.release(key)
 
-    randInt = random.randint(0, 360)
-    if(randInt < 100):
-        keyboard.press('z')
+def main():
+    print('Press Space to begin')
+    keyboard.wait("space")
+
+    while (True):
+        if keyboard.is_pressed('Esc'):
+                print("Exiting...")
+                release_all()
+                sys.exit(0)
+
+        randInt = random.randint(0, 360)
+        if(randInt < 100):
+            keyboard.press('z')
+        elif randInt < 150 :
+            keyboard.press('x')
+        elif randInt < 200 :
+            keyboard.press('w')
+        elif randInt < 250 :
+            keyboard.press('a')
+        elif randInt < 300 :
+            keyboard.press('s')
+        elif randInt < 350 :
+            keyboard.press('d')
+        else :
+            keyboard.press('enter')
         time.sleep(0.2)
-        keyboard.release('z')
-    elif randInt < 150 :
-        keyboard.press('x')
-        time.sleep(0.2)
-        keyboard.release('x')
-    elif randInt < 200 :
-        keyboard.press('w')
-        time.sleep(0.2)
-        keyboard.release('w')
-    elif randInt < 250 :
-        keyboard.press('a')
-        time.sleep(0.2)
-        keyboard.release('a')
-    elif randInt < 300 :
-        keyboard.press('s')
-        time.sleep(0.2)
-        keyboard.release('s')
-    elif randInt < 350 :
-        keyboard.press('d')
-        time.sleep(0.2)
-        keyboard.release('d')
-    else :
-        keyboard.press('enter')
-        time.sleep(0.2)
-        keyboard.release('enter')
-    time.sleep(0.01)
+        release_all()
+
+if __name__ == '__main__':
+    main()
