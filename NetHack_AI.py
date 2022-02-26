@@ -1,18 +1,16 @@
-
-#Code to play games, text ppl, etc.
-
 import keyboard
 import random
 import time
+import sys
 
-exit = False
-print('3')
-time.sleep(1)
-print('2')
-time.sleep(1)
-print('1')
-time.sleep(1)
-while (exit == False):
+print('Press Space to begin')
+keyboard.wait("space")
+
+while (True):
+    if keyboard.is_pressed('Esc'):
+            print("Exiting...")
+            sys.exit(0)
+
     # Generate Int for Decision Making
     randInt = random.randint(0, 181)
     # Lowercase Letter Inputs
@@ -62,5 +60,3 @@ while (exit == False):
         time.sleep(0.1)
         keyboard.release('enter')
     time.sleep(0.01)
-
-    exit = keyboard.is_pressed('esc')
