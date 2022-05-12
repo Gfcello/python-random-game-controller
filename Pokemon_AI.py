@@ -4,15 +4,12 @@ import random
 import time
 import sys
 
-SCREEN_WIDTH = 1920
-SCREEN_HEIGHT = 1080
-
-BATTLE_MENU_X = 1680
-BATTLE_MENU_Y = 733
+BATTLE_MENU_X = 1680/1920
+BATTLE_MENU_Y = 733/1080
 BATTLE_ACTIVE = (248, 248, 248)
 
-HEALTH_X = 1290
-HEALTH_Y = 613
+HEALTH_X = 1290/1920
+HEALTH_Y = 613/1080
 
 used_keys = [
     'w', 'a', 's', 'd', 'x', 'z', 'enter'
@@ -21,14 +18,14 @@ used_keys = [
 def get_img():
     img = ImageGrab.grab(bbox=None, include_layered_windows=False, \
                              all_screens=False, xdisplay=None)
-    px = img.load()
-    return px
+    return img
 
 def check_state():
     img = get_img()
+    pix = img.load()
     state = "walk"
-    if img[BATTLE_MENU_X, BATTLE_MENU_Y] == BATTLE_ACTIVE:
-        health_px = img[HEALTH_X, HEALTH_Y]
+    if pix[BATTLE_MENU_X * img.size[0], BATTLE_MENU_Y * img.size[1]] == BATTLE_ACTIVE:
+        health_px = pix[HEALTH_X * img.size[0], HEALTH_Y * img.size[1]]
         if health_px[1] > 200:
             state = "battle"
         else:
@@ -36,11 +33,13 @@ def check_state():
                 
     return state
 
-def battle():
-    # Exit out of any menu game is currently in
+def exit_menu():
     keyboard.press('x')
     time.sleep(0.2)
     release_all()
+
+def battle():
+    exit_menu()
 
     # Move to option
     keyboard.press('w')
@@ -82,10 +81,7 @@ def battle():
     release_all()
 
 def switch_pokemon():
-    # Exit out of any menu game is currently in
-    keyboard.press('x')
-    time.sleep(0.2)
-    release_all()
+    exit_menu()
 
     # Move to option
     keyboard.press('s')
@@ -117,10 +113,7 @@ def switch_pokemon():
     release_all()
 
 def run():
-    # Exit out of any menu game is currently in
-    keyboard.press('x')
-    time.sleep(0.2)
-    release_all()
+    exit_menu()
 
     coin = random.randint(0, 9)
 
@@ -143,17 +136,17 @@ def walk():
     randInt = random.randint(0, 360)
     if(randInt < 100):
         keyboard.press('z')
-    elif randInt < 150 :
+    elif randInt < 150:
         keyboard.press('x')
-    elif randInt < 200 :
+    elif randInt < 200:
         keyboard.press('w')
-    elif randInt < 250 :
+    elif randInt < 250:
         keyboard.press('a')
-    elif randInt < 300 :
+    elif randInt < 300:
         keyboard.press('s')
-    elif randInt < 350 :
+    elif randInt < 350:
         keyboard.press('d')
-    else :
+    else:
         keyboard.press('enter')
     time.sleep(0.2)
     release_all()
